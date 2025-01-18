@@ -61,6 +61,7 @@
             this.dataGridAgenda.Size = new System.Drawing.Size(1010, 446);
             this.dataGridAgenda.TabIndex = 1;
             this.dataGridAgenda.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAgenda_CellClick);
+            this.dataGridAgenda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridAgenda_CellContentClick);
             // 
             // lblnome
             // 

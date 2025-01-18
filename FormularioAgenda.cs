@@ -22,7 +22,7 @@ namespace Agenda
         public FormularioAgenda()
         {
             InitializeComponent();
-            Utils.Utils.atualizaDataGridView(dataGridAgenda);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,6 +65,9 @@ namespace Agenda
 
         private void FormularioAgenda_Load(object sender, EventArgs e)
         {
+            Utils.Utils.atualizaDataGridView(dataGridAgenda);
+
+            dataGridAgenda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
         }
 
@@ -191,6 +194,10 @@ namespace Agenda
         
         }
 
+        private void dataGridAgenda_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }
