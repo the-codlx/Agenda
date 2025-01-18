@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,33 +12,49 @@ namespace Agenda.Conection
     public class Conexao
     {
         private static string connectionString =
-        "Data Source=localhost;Initial Catalog=Agenda;Integrated Security=True";
+        @"Data Source=LUCAS\SQLEXPRESS;Initial Catalog=Agenda;Integrated Security=True";
+
+        public static SqlConnection connection = null;
 
         // Método para obter a conexão
-        public SqlConnection obterConexao()
+        public static SqlConnection obterConexao()
         {
-            SqlConnection conexao = new SqlConnection(connectionString);
 
             try
             {
+                connection = new SqlConnection(connectionString);
+                connection.Open();
 
-                conexao.Open();
                 
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show(ex.Message);
+
+            }
+
+            return connection;
+
+        }
+
+        public static void fecharConexao()
+        {
+            try
+            {
+                if (connection != null && connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                    
+                }
             }
             catch (SqlException ex)
             {
 
-                MessageBox.Show("Ocorreu um erro na conexão!");
-                
+                MessageBox.Show("Ocorreu um erro na conexão!" + ex);
 
             }
-
-            return conexao;
-
-
         }
-
 
     }
 
